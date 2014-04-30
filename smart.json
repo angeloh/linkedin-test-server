@@ -1,0 +1,14 @@
+{
+  "packages": {
+    "meteor-chosen": {
+      "branch": "master",
+      "git": "https://github.com/whalepath/meteor-chosen.git"
+    },
+    "npm": {},
+    "iron-router": {},
+    "meteor-collection-management": {
+      "branch": "master",
+      "git": "git@github.com:whalepath/meteor-collection-management.git"
+    }
+  }
+}
