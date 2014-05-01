@@ -32,11 +32,11 @@ Template.login.events({
             state: state,
             linkedInResponseSignOn: {
                 statusCode : 400,
+                error: 'invalid',
                 error_description: 'the user denied your request'
             }
         });
-        AuthenticationManager.createAuthentication(authentication, {
-        });
+        AuthenticationManager.createAuthentication(authentication, true);
         window.location = authentication.redirectBackUri;
     },
     //
@@ -49,15 +49,19 @@ Template.login.events({
             redirect_uri: getParameterByName('redirect_uri'),
             state: state,
             linkedInResponseSignOn: {
-                statusCode : 500,
                 code: 'code_'+state,
+            },
+            linkedInResponseAccessToken : {
+                statusCode : 500,
+
                 timesFail: timesFail,
                 error: 'server_error',
                 error_description:"the authorization server encountered an unexpected condition : Unable to retrieve access token"
 //                error_description: 'missing required parameters, includes an invalid parameter value, parameter more than once. : Unable to retrieve access token : appId or redirect uri does not match authorization code or authorization code expired',
             }
         });
-        AuthenticationManager.createAuthentication(authentication, {});
+        // only temporary failure
+        AuthenticationManager.createAuthentication(authentication);
         window.location = authentication.redirectBackUri;
     }
 });
