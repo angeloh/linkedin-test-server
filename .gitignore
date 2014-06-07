@@ -14,7 +14,8 @@ deploy
 *.log
 node_modules
 .DS_Store
-.idea
+/.idea
 .project
 BrowserStackLocal
 *.swp
+/*.iml
