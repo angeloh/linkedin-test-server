@@ -6,12 +6,13 @@ function getParameterByName(name) {
 }
 
 Template.login.events({
-    'click #login':function() {
+    'click .login':function() {
         var state = getParameterByName('state');
         var client_id = getParameterByName('client_id');
         // scope=r_basicprofile%20r_emailaddress%20r_contactinfo
         var scope=getParameterByName('scope');
         var authentication = new Authentication({
+            profile: login_profiles[this],
             client_id: client_id,
             redirect_uri: getParameterByName('redirect_uri'),
             state: state,
@@ -65,3 +66,11 @@ Template.login.events({
         window.location = authentication.redirectBackUri;
     }
 });
+
+Template.login.profiles = function() {
+    var profile_names = [];
+    for(var p in login_profiles) {
+            profile_names.push(p);
+    }
+    return profile_names;
+}
