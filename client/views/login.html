@@ -1,7 +1,16 @@
 <template name="login">
+
+    <h2>Choose a profile to login with</h2>
     {{#each profiles}}
     <button class="login" id="{{.}}">Login as {{.}}</button><br>
     {{/each}}
+
+    <p>
+        Profiles are configured via <b>/lib/profiles.js</b> file.
+        To extend the list just add another property to the root object in the file.
+    </p>
+
+    <h2>Or a fail action</h2>
     <button id="user_cancelled">User Cancelled</button><br>
     <button id="server_error">Server fails on access_token</button> <input type="text" name="times"><br>
 </template>
