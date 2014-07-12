@@ -68,9 +68,11 @@ Template.login.events({
 });
 
 Template.login.profiles = function() {
-    var profile_names = [];
+    var profiles = [];
     for(var p in login_profiles) {
-            profile_names.push(p);
+        var profile = login_profiles[p];
+        profile.testProfileName = p;
+        profiles.push(profile);
     }
-    return profile_names;
+    return profiles;
 }
