@@ -12,7 +12,7 @@ Template.login.events({
         // scope=r_basicprofile%20r_emailaddress%20r_contactinfo
         var scope=getParameterByName('scope');
         var authentication = new Authentication({
-            profile: login_profiles[this],
+            profile: login_profiles[this.testProfileName],
             client_id: client_id,
             redirect_uri: getParameterByName('redirect_uri'),
             state: state,
