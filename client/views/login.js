@@ -5,14 +5,40 @@ function getParameterByName(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+Template.login.helpers({
+    linkedInHumans: function() {
+        var firstName = Session.get('firstName');
+        return LinkedInHuman.databaseTable.find({ 'linkedInData.firstName' : firstName }, {sort: {'linkedInData.firstName' : 1}}).fetch();
+    },
+    profileCount: function() {
+        return LinkedInHuman.databaseTable.find().count();
+    },
+    firstNameFilter: function() {
+        return Session.get('firstName');
+    }
+});
+
 Template.login.events({
+    'change #firstNameFilter' : function() {
+        var filter = $('#firstNameFilter').val();
+        Session.set('firstName', filter);
+    },
+
     'click .login':function() {
         var state = getParameterByName('state');
         var client_id = getParameterByName('client_id');
         // scope=r_basicprofile%20r_emailaddress%20r_contactinfo
         var scope=getParameterByName('scope');
+
+        var profile;
+        if (this.testProfileName) {
+            profile = login_profiles[this.testProfileName];
+        } else {
+            profile = this.linkedInData;
+        }
+
         var authentication = new Authentication({
-            profile: login_profiles[this.testProfileName],
+            profile: profile,
             client_id: client_id,
             redirect_uri: getParameterByName('redirect_uri'),
             state: state,
