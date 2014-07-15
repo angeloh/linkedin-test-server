@@ -35,6 +35,14 @@ Template.login.events({
             profile = login_profiles[this.testProfileName];
         } else {
             profile = this.linkedInData;
+            //Needed to revert json structure back to LinkedIn raw format.
+            if (profile.positions && profile.positions.values) {
+                _.each(profile.positions.values, function(position){
+                     if(position.linkedInCompanyId) {
+                        position.company = LinkedInCompany.databaseTable.findOneById(position.linkedInCompanyId).linkedInData;
+                     }
+                });
+            }
         }
 
         var authentication = new Authentication({
