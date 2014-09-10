@@ -6,5 +6,6 @@
 standard-app-packages
 autopublish
 insecure
-iron-router
 meteor-collection-management
+iron:router
+
