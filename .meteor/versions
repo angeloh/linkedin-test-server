@@ -29,7 +29,7 @@ jquery@1.0.0
 json@1.0.0
 livedata@1.0.9
 logging@1.0.3
-meteor-collection-management@1.0.14
+meteor-collection-management@1.1.10
 meteor-platform@1.1.0
 meteor@1.1.0
 minifiers@1.1.0
