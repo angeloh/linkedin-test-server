@@ -1,8 +1,8 @@
 {
   "packages": {
-    "meteor-chosen": {
+    "whalepath-collections": {
       "branch": "master",
-      "git": "https://github.com/whalepath/meteor-chosen.git"
+      "git": "git@github.com:whalepath/whalepath-collections.git"
     },
     "meteor-collection-management": {
       "branch": "master",
