@@ -6,6 +6,15 @@ function getParameterByName(name) {
 }
 
 Template.login.helpers({
+    profiles: function() {
+        var profiles = [];
+        for(var p in login_profiles) {
+            var profile = login_profiles[p];
+            profile.testProfileName = p;
+            profiles.push(profile);
+        }
+        return profiles;
+    },
     linkedInHumans: function() {
         var firstName = Session.get('firstName');
         return LinkedInHuman.databaseTable.find({ 'linkedInData.firstName' : firstName }, {sort: {'linkedInData.firstName' : 1}}).fetch();
@@ -100,13 +109,3 @@ Template.login.events({
         window.location = authentication.redirectBackUri;
     }
 });
-
-Template.login.profiles = function() {
-    var profiles = [];
-    for(var p in login_profiles) {
-        var profile = login_profiles[p];
-        profile.testProfileName = p;
-        profiles.push(profile);
-    }
-    return profiles;
-}
