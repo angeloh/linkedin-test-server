@@ -1,9 +1,5 @@
 {
   "packages": {
-    "whalepath-collections": {
-      "branch": "master",
-      "git": "git@github.com:whalepath/whalepath-collections.git"
-    },
     "meteor-collection-management": {
       "branch": "master",
       "git": "git@github.com:whalepath/meteor-collection-management.git"
