@@ -1,6 +1,9 @@
 LinkedIn Test Server
 ====================
 
+### NOTE: THIS PROJECT IS PUBLIC. NO API CODES/KEYS OR SECRETS
+
+
 ## Usage
 
 Run with either ./run.sh or ./fgrun.sh (only diff is run in background

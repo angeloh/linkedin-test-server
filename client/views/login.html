@@ -14,6 +14,7 @@
     <button id="user_cancelled">User Cancelled</button><br>
     <button id="server_error">Server fails on access_token</button> <input type="text" name="times"><br>
 
+    {{#if productionProfiles}}}
     <h2>Production dump profiles ({{profileCount}} loaded)</h2>
     <p>These are pulled from a production database dump. Run ./local-mongorestore.sh script to
        fill in the test database.</p>
@@ -22,5 +23,5 @@
     {{#each linkedInHumans}}
         <button class="login">{{linkedInData.firstName}} {{linkedInData.lastName}}</button> &mdash; {{linkedInData.headline}}<br>
     {{/each}}
-
+    {{/if}}
 </template>

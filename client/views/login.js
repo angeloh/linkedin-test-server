@@ -17,10 +17,25 @@ Template.login.helpers({
     },
     linkedInHumans: function() {
         var firstName = Session.get('firstName');
-        return LinkedInHuman.databaseTable.find({ 'linkedInData.firstName' : firstName }, {sort: {'linkedInData.firstName' : 1}}).fetch();
+        if ( LinkedInHuman) {
+            LinkedInHuman.databaseTable.find({'linkedInData.firstName': firstName}, {sort: {'linkedInData.firstName': 1}}).fetch();
+        } else {
+            return [];
+        }
+    },
+    productionProfiles: function() {
+        if ( LinkedInHuman) {
+            return LinkedInHuman.databaseTable.find().count() > 0;
+        } else {
+            return false;
+        }
     },
     profileCount: function() {
-        return LinkedInHuman.databaseTable.find().count();
+        if ( LinkedInHuman) {
+            return LinkedInHuman.databaseTable.find().count();
+        } else {
+            return 0;
+        }
     },
     firstNameFilter: function() {
         return Session.get('firstName');
