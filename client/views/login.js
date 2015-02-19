@@ -24,9 +24,13 @@ Template.login.helpers({
         }
     },
     productionProfiles: function() {
-        if ( LinkedInHuman) {
-            return LinkedInHuman.databaseTable.find().count() > 0;
-        } else {
+        try {
+            if ( LinkedInHuman) {
+                return LinkedInHuman.databaseTable.find().count() > 0;
+            } else {
+                return false;
+            }
+        } catch(e) {
             return false;
         }
     },
