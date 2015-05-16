@@ -1,8 +1,9 @@
 Router.map(function () {
     // https://doc.intercom.io/api/#list-tags-for-an-app
-    this.route('intercom_get_all_tags', {
+    this.route('intercom_tags', {
         path: 'tags',
-        action: function () {
+        where: 'server'
+    }).get(function () {
             /*
              return
              {
@@ -27,12 +28,36 @@ Router.map(function () {
              "pages":{}
              }
              */
-        }
+
+    }).post(function() {
+/*
+create:
+ {
+ "name": "Independent"
+ }
+
+ update:
+ {
+ "id": "17513",
+ "name": "Independent"
+ }
+ */
     });
     this.route('intercom_tags_operation', {
         path: 'tags/:intercomTagId',
-        action: function () {
+        where: 'server'
+    }).delete(function () {
+        console.log("DELETE");
             // HTTP operation: DELETE, POST, etc.
-        }
+
     });
 });
+
+/*
+tag response:
+ {
+ "type": "tag",
+ "name": "Independent",
+ "id": "17513"
+ }
+ */
