@@ -93,7 +93,6 @@ Meteor.startup(function() {
                     });
                 }
                 intercomTag._save();
-
             }
 
             var users = body.users;

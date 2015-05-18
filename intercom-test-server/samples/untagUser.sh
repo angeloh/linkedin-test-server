@@ -8,11 +8,8 @@ curl http://localhost:8000/tags \
   "name": "Independent",
   "users": [
     {
-      "id" : "53427b7ecce5722303000003",
+      "user_id" : "25",
       "untag": true
-    },
-    {
-      "user_id" : "25"
     }
   ]
 }'
