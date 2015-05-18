@@ -54,7 +54,31 @@ Router.map(function() {
  "id" : "5310d8e8598c9a0b24000005"
  }
  }'
+*/
+        var adminId = this.request.body.admin_id;
+        var noteBody = this.request.body.body;
+        var user = this.request.body.user;
+        var responseUser = _.extend({
+            type: 'user'
+        }, user);
+        var author = {
+            type: 'admin',
+            id: adminId,
+            name: 'author name',
+            email: 'author@email.com',
+            companies: []
+        };
 
+        var response = {
+            type:"note",
+            id: Math.random(),
+            created_at: new Date,
+            body: noteBody,
+            author: author,
+            user: responseUser
+        };
+        sendJSONResponse(this, response);
+        /*
  HTTP/1.1 200 OK
 
  {

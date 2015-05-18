@@ -4,6 +4,39 @@ Router.map(function () {
         path: 'tags',
         where: 'server'
     }).get(function () {
+        var tags = [
+            {
+                type: "tag",
+                name: "Customer",
+                id:"1"
+            },
+            {
+                type: "tag",
+                name: "Qualified Lead",
+                id:"2"
+            },
+            {
+                type: "tag",
+                name: "Lead",
+                id:"3"
+            },
+            {
+                type: "tag",
+                name: "Analyst",
+                id:"4"
+            },
+            {
+                type: "tag",
+                name: "Unqualified",
+                id:"10"
+            },
+        ];
+        var response = {
+            type: "tag.list",
+            tags: tags,
+            pages: {}
+        };
+        sendJSONResponse(this, response);
             /*
              return
              {
