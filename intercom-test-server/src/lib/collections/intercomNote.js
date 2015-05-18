@@ -5,5 +5,6 @@ IntercomNote = DbObjectType.create({
             defaultValue: 'note',
             secured: true
         }
-    }
+    },
+    databaseTableName: 'intercomNote',
 });

@@ -7,9 +7,9 @@ EventsManagerType = ManagerType.create({
     callPrefix: 'intercomEvents',
     meteorCallDefinitions: [
         {
-            getTagsResponse: {
-                permissionCheck: 'public'
-            }
+            //getTagsResponse: {
+            //    permissionCheck: 'public'
+            //}
         }
     ]
 });

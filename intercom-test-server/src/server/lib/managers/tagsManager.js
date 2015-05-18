@@ -29,12 +29,13 @@ Meteor.startup(function() {
     _.each(DefaultTags, function(defaultTag) {
         var tag = IntercomTag.findOneByName(defaultTag.name);
         if ( tag == null) {
-            defaultTag._newId = id;
+            defaultTag._newId = defaultTag.id;
             var intercomTag = new IntercomTag(defaultTag);
             intercomTag._save();
         }
-    })
+    });
 
+    debugger;
     _.extend(TagsManagerType.prototype, {
         getTagsResponseMethod: function(request) {
             // TODO : modify based on needs.
@@ -76,7 +77,24 @@ Meteor.startup(function() {
                             // intercom error response
                         }
                     };
+                } else {
+                    intercomTag.upsertFromUntrusted(_.pick(request.body, 'name'));
                 }
+            }
+
+            var users = request.body.users;
+            if (_.isArray(users)) {
+
+                _.each(users, function(user) {
+                     UsersManager.tagUserMethod(intercomTag, userTagOperation);
+                });
+            } else if ( users != null ){
+                return {
+                    statusCode: 404,
+                    body: {
+                        // intercom error response
+                    }
+                };
             }
             return {
                 body: EJSON.stringify(intercomTag)

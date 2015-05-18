@@ -7,9 +7,18 @@ UsersManagerType = ManagerType.create({
     callPrefix: 'intercomUsers',
     meteorCallDefinitions: [
         {
-            getTagsResponse: {
+            createUserResponse: {
                 permissionCheck: 'public'
-            }
+            },
+            getUserByIntercomIdResponse: {
+                permissionCheck: 'public'
+            },
+            getUserByWhalePathUserIdResponse: {
+                permissionCheck: 'public'
+            },
+            getUserByEmailResponse: {
+                permissionCheck: 'public'
+            },
         }
     ]
 });

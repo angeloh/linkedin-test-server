@@ -5,5 +5,6 @@ IntercomEvent = DbObjectType.create({
             defaultValue: 'event',
             secured: true
         }
-    }
+    },
+    databaseTableName: 'intercomEvent'
 });

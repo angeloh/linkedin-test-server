@@ -6,9 +6,9 @@ NotesManagerType = ManagerType.create({
     callPrefix: 'intercomNoting',
     meteorCallDefinitions: [
         {
-            createNoteResponse: {
-                permissionCheck: 'public'
-            }
+            //createNoteResponse: {
+            //    permissionCheck: 'public'
+            //}
         }
     ]
 });

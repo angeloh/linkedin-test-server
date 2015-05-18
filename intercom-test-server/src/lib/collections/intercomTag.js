@@ -1,3 +1,4 @@
+
 IntercomTag = DbObjectType.create({
     typeName: 'intercomTag',
     properties: {
@@ -8,5 +9,6 @@ IntercomTag = DbObjectType.create({
             defaultValue: "tag",
             secured: true
         }
-    }
+    },
+    databaseTableName:  'intercomTag'
 });

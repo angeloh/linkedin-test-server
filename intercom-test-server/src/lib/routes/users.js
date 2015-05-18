@@ -84,8 +84,36 @@ Router.map(function() {
         path: 'users',
         where: 'server'
     }).post(function() {
-
+        debugger;
+        var response = UsersManager.createUserResponseMethod(this.request);
+        sendJSONResponse(this, response);
     });
+    this.route('usersByIntercomId', {
+        path: 'users/:intercomId',
+        where: 'server'
+    }).get(function() {
+        debugger;
+        var response = UsersManager.getUserByIntercomIdResponseMethod(this.request);
+        sendJSONResponse(this, response);
+    });
+    this.route('usersByWhalePathUserId', {
+        path: 'users?user_id=:whalePathUserId',
+        where: 'server'
+    }).get(function() {
+        debugger;
+        var response = UsersManager.getUserByWhalePathUserIdResponseMethod(this.request);
+        sendJSONResponse(this, response);
+    });
+
+    this.route('usersByEmail', {
+        path: 'users?email=:email',
+        where: 'server'
+    }).get(function() {
+        debugger;
+        var response = UsersManager.getUserByEmailResponseMethod(this.request);
+        sendJSONResponse(this, response);
+    });
+
 });
 
 
