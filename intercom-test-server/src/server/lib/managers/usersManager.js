@@ -130,11 +130,11 @@ Meteor.startup(function() {
             }
 
             if( userTagOperation.untag === true) {
-                intercomUser.updateOneById(intercomUser.id, {
+                IntercomUser.updateOneById(intercomUser.id, {
                     $pull: {'tagIds': intercomTag.id}
                 });
             } else {
-                intercomUser.updateOneById(intercomUser.id, {
+                IntercomUser.updateOneById(intercomUser.id, {
                     $push: {'tagIds': intercomTag.id}
                 });
             }
