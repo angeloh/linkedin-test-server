@@ -31,12 +31,14 @@ Meteor.startup(function() {
                 email: 'author@email.com',
                 companies: []
             };
+
             var intercomNote = new IntercomNote({
                 created_at: new Date(),
                 body: noteBody,
                 author: author,
                 userId: user
-            })
+            });
+
 
             var response = {
                 type:"note",
