@@ -117,7 +117,7 @@ Meteor.startup(function() {
                 }
             } else {
                 if (userId) {
-                    intercomUser = IntercomUser.findOneByUserId(userId);
+                    intercomUser = IntercomUser.findOneByUser_id(userId);
                 }
                 if (intercomUser == null) {
                     intercomUser = IntercomUser.findOneByEmail(email);

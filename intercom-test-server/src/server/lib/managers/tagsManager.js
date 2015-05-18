@@ -40,11 +40,18 @@ Meteor.startup(function() {
         getTagsResponseMethod: function(request) {
             // TODO : modify based on needs.
             var query = {};
-            var tags = IntercomTag.findFetch(query);
+            var intercomTags = IntercomTag.findFetch(query);
+            var tagResponse = [];
+            _.each(intercomTags, function(intercomTag) {
+                tagResponse.push({
+                    id: intercomTag.id,
+                    name: intercomTag.name
+                });
+            });
             var response = {
                 body: {
                     type: "tag.list",
-                    tags: tags,
+                    tags: tagResponse,
                     pages: {}
                 }
             };
@@ -59,8 +66,10 @@ Meteor.startup(function() {
         }
         */
         createUpdateTagResponseMethod: function(request) {
-            var name = request.body.name;
-            var id = request.body.id;
+            var thatManager = this.thatManager;
+            var body = request.body;
+            var name = body.name;
+            var id = body.id;
             var intercomTag;
             if ( id == null ) {
                 intercomTag = new IntercomTag({
@@ -78,14 +87,13 @@ Meteor.startup(function() {
                         }
                     };
                 } else {
-                    intercomTag.upsertFromUntrusted(_.pick(request.body, 'name'));
+                    intercomTag.upsertFromUntrusted({clientObj:_.pick(request.body, 'name')});
                 }
             }
 
-            var users = request.body.users;
+            var users = body.users;
             if (_.isArray(users)) {
-
-                _.each(users, function(user) {
+                _.each(users, function(userTagOperation) {
                      UsersManager.tagUserMethod(intercomTag, userTagOperation);
                 });
             } else if ( users != null ){
@@ -96,8 +104,13 @@ Meteor.startup(function() {
                     }
                 };
             }
+            var responseBody = {
+                id: intercomTag.id,
+                type: intercomTag.type,
+                name: intercomTag.name
+            };
             return {
-                body: EJSON.stringify(intercomTag)
+                body: responseBody
             };
         },
     });
