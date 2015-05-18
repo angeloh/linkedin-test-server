@@ -7,9 +7,9 @@ TaggingManagerType = ManagerType.create({
     callPrefix: 'intercomTagging',
     meteorCallDefinitions: [
         {
-            //createAuthentication: {
-            //    permissionCheck: 'public'
-            //}
+            getTagsResponse: {
+                permissionCheck: 'public'
+            }
         }
     ]
 });
