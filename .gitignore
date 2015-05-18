@@ -13,6 +13,7 @@ results
 deploy
 *.log
 node_modules
+node-inspector-0.7.4
 .DS_Store
 .idea
 .project

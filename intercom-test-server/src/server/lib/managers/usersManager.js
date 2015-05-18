@@ -1,12 +1,13 @@
 Meteor.startup(function() {
     _.extend(UsersManagerType.prototype, {
         createIntercomUserResponseObject: function(intercomUser) {
-            var response = _.omit(intercomUser.toJSONObject(), 'tagIds');
-
+            var response = _.omit(intercomUser.toJSONValue(), '_id','tagIds', 'lastModifiedAt', 'createdAt');
+            response.id = intercomUser.id;
+            response.created_at = intercomUser.createdAt;
             if ( intercomUser.tagIds) {
                 var intercomTags = IntercomTags.findFetchById(intercomUser.tagIds);
                 response.tags = _.map(intercomTags, function(intercomTag) {
-                    return EJSON.stringify(intercomTag);
+                    return intercomTag.toJSONObject();
                 });
             }
 
@@ -31,8 +32,13 @@ Meteor.startup(function() {
                 new_session	no	A boolean value, which if true, instructs Intercom to register the request as a session.
                 */
             var intercomUser;
-            var intercomId = request.body.id;
-            var email = request.body.email;
+            var body = request.body;
+            var intercomId = body.id;
+            var email = body.email;
+            var userId = body.user_id;
+            var userData = _.omit(body, 'id');
+            var updateNeeded = true;
+
             if ( intercomId ) {
                 intercomUser = IntercomUser.findOneById(intercomId);
                 if ( intercomUser == null ) {
@@ -41,14 +47,20 @@ Meteor.startup(function() {
                     }
                 }
             } else {
-                intercomUser = IntercomUser.findOneByUserId(userId);
+                intercomUser = IntercomUser.findOneByUser_id(userId);
                 if ( intercomUser == null) {
                     // TODO: simulate issue with multiple users with same email.
                     intercomUser = IntercomUser.findOneByEmail(email);
                 }
                 if ( intercomUser == null ) {
-                    intercomUser = new IntercomUser(request.body);
+                    intercomUser = new IntercomUser(userData);
+                    intercomUser._save();
+                    updateNeeded = false;
                 }
+            }
+            debugger;
+            if ( updateNeeded) {
+                intercomUser.upsertFromUntrusted({clientObj:userData});
             }
             return {
                 body: thatManager.createIntercomUserResponseObject(intercomUser)
