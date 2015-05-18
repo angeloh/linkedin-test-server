@@ -40,7 +40,7 @@ Meteor.startup(function() {
         getTagsResponseMethod: function(request) {
             // TODO : modify based on needs.
             var query = {};
-            var tags = IntercomTag.find(query);
+            var tags = IntercomTag.findFetch(query);
             var response = {
                 body: {
                     type: "tag.list",
