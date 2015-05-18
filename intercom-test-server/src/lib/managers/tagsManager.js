@@ -1,9 +1,9 @@
 /**
  * AuthenticationManager
  */
-TaggingManager = null;
+TagsManager = null;
 
-TaggingManagerType = ManagerType.create({
+TagsManagerType = ManagerType.create({
     callPrefix: 'intercomTagging',
     meteorCallDefinitions: [
         {
@@ -15,6 +15,6 @@ TaggingManagerType = ManagerType.create({
 });
 
 Meteor.startup(function(){
-    Object.freeze(TaggingManagerType.prototype);
-    TaggingManager = new TaggingManagerType();
+    Object.freeze(TagsManagerType.prototype);
+    TagsManager = new TagsManagerType();
 });

@@ -3,6 +3,10 @@ IntercomUser = DbObjectType.create({
     properties: {
         name: {
             indexed: true
+        },
+        type:{
+            defaultValue: 'user',
+            secured: true
         }
     }
 });

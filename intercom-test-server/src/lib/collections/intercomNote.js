@@ -2,7 +2,8 @@ IntercomNote = DbObjectType.create({
     typeName: 'intercomNote',
     properties: {
         type:{
-            defaultValue: 'note'
+            defaultValue: 'note',
+            secured: true
         }
     }
 });

@@ -1,5 +1,5 @@
 Meteor.startup(function() {
-    _.extend(NoteManagerType.prototype, {
+    _.extend(NotesManagerType.prototype, {
         /*
          curl https://api.intercom.io/notes \
          -X POST \
@@ -15,7 +15,7 @@ Meteor.startup(function() {
          }'
          */
 
-        createNoteResponse: function(request) {
+        createNoteResponseMethod: function(request) {
             var adminId = request.body.admin_id;
             var noteBody = request.body.body;
             var user = request.body.user;

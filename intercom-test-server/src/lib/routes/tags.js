@@ -4,7 +4,7 @@ Router.map(function () {
         path: 'tags',
         where: 'server'
     }).get(function () {
-        var response = TaggingManager.getTagsResponseMethod(this.request);
+        var response = TagsManager.getTagsResponseMethod(this.request);
         sendJSONResponse(this, response);
             /*
              return
@@ -32,7 +32,7 @@ Router.map(function () {
              */
 
     }).post(function() {
-        var response = TaggingManager.createUpdateTagResponseMethod(this.request);
+        var response = TagsManager.createUpdateTagResponseMethod(this.request);
         sendJSONResponse(this, response);
 /*
 create:

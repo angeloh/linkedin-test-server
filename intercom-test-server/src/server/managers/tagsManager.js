@@ -35,7 +35,7 @@ Meteor.startup(function() {
         }
     })
 
-    _.extend(TaggingManagerType.prototype, {
+    _.extend(TagsManagerType.prototype, {
         getTagsResponseMethod: function(request) {
             // TODO : modify based on needs.
             var query = {};
