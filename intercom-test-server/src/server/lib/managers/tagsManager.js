@@ -71,13 +71,7 @@ Meteor.startup(function() {
             var name = body.name;
             var id = body.id;
             var intercomTag;
-            if ( id == null ) {
-                intercomTag = new IntercomTag({
-                    type: "tag",
-                    name: name
-                });
-                intercomTag._save();
-            } else {
+            if ( id != null ) {
                 intercomTag = IntercomTag.findOneById(id);
                 if (intercomTag == null) {
                     return {
@@ -89,6 +83,17 @@ Meteor.startup(function() {
                 } else {
                     intercomTag.upsertFromUntrusted({clientObj:_.pick(request.body, 'name')});
                 }
+            } else {
+                var regExp = new RegExp(name, 'i');
+                intercomTag = IntercomTag.findOneByName(regExp);
+                if ( intercomTag == null ) {
+                    intercomTag = new IntercomTag({
+                        type: "tag",
+                        name: name
+                    });
+                }
+                intercomTag._save();
+
             }
 
             var users = body.users;
