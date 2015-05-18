@@ -20,3 +20,4 @@ BrowserStackLocal
 *.swp
 *.iml
 productiondb
+packages
