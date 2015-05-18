@@ -15,10 +15,12 @@ Meteor.startup(function() {
          }'
          */
 
-        createNoteResponseMethod: function(request) {
-            var adminId = request.body.admin_id;
-            var noteBody = request.body.body;
-            var user = request.body.user;
+        createUpdateNoteResponseMethod: function(request) {
+            var thatManager= this.thatManager;
+            var body = request.body;
+            var adminId = body.admin_id;
+            var noteBody = body.body;
+            var user = body.user;
             // TODO: see if user exists.
             // TODO: see if adminId exists.
             var responseUser = _.extend({

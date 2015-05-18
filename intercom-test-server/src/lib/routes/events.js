@@ -84,6 +84,7 @@ Router.map(function() {
         path: 'events',
         where: 'server'
     }).post(function() {
-
+        var response = EventsManager.eventsCreateUpdateResponseMethod(this.request);
+        sendJSONResponse(this, response);
     });
 })
