@@ -1,16 +1,21 @@
 Meteor.startup(function() {
     _.extend(UsersManagerType.prototype, {
         createIntercomUserResponseObject: function(intercomUser) {
-            var response = _.omit(intercomUser.toJSONValue(),
-                '_id','tagIds', 'lastModifiedAt', 'createdAt'
-            );
-            response.id = intercomUser.id;
-            response.created_at = intercomUser.createdAt;
-            if ( intercomUser.tagIds) {
-                var intercomTags = IntercomTags.findFetchById(intercomUser.tagIds);
-                response.tags = _.map(intercomTags, function(intercomTag) {
-                    return intercomTag.toJSONObject();
-                });
+            var response;
+            if ( intercomUser ) {
+                var response = _.omit(intercomUser.toJSONValue(),
+                    '_id', 'tagIds', 'lastModifiedAt', 'createdAt'
+                );
+                response.id = intercomUser.id;
+                response.created_at = intercomUser.createdAt;
+                if (intercomUser.tagIds) {
+                    var intercomTags = IntercomTags.findFetchById(intercomUser.tagIds);
+                    response.tags = _.map(intercomTags, function (intercomTag) {
+                        return intercomTag.toJSONObject();
+                    });
+                }
+            } else {
+                response = {};
             }
 
             return response;
@@ -89,18 +94,27 @@ Meteor.startup(function() {
                 body: thatManager.createIntercomUserResponseObject(intercomUser)
             };
         },
-        getUserByIntercomIdResponseMethod: function(request) {
+        getUserByIntercomIdResponseMethod: function(intercomId) {
             var thatManager = this.thatManager;
-
+            var intercomUser = IntercomUser.findOneById(intercomId);
+            return {
+                body: thatManager.createIntercomUserResponseObject(intercomUser)
+            };
         },
-        getUserByWhalePathUserIdResponseMethod: function(request) {
+        getUserByWhalePathUserIdResponseMethod: function(userId) {
             var thatManager = this.thatManager;
-
+            var intercomUser = IntercomUser.findOneByUser_id(userId);
+            return {
+                body: thatManager.createIntercomUserResponseObject(intercomUser)
+            };
         },
-        getUserByEmailResponseMethod: function(request) {
+        getUserByEmailResponseMethod: function(email) {
             var thatManager = this.thatManager;
             debugger;
-
+            var intercomUser = IntercomUser.findOneByEmail(email);
+            return {
+                body: thatManager.createIntercomUserResponseObject(intercomUser)
+            };
         },
         tagUserMethod: function(intercomTag, userTagOperation) {
             var thatManager = this.thatManager;

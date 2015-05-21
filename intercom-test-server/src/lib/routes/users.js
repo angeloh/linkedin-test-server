@@ -85,7 +85,25 @@ Router.map(function() {
         where: 'server'
     }).post(function() {
         debugger;
+
         var response = UsersManager.createUserResponseMethod(this.request);
+        sendJSONResponse(this, response);
+    }).get(function() {
+        var email = this.request.query.email;
+        var userId = this.request.query.user_id;
+        var response;
+        //    path: 'users?user_id=:whalePathUserId',
+        debugger;
+        if ( userId ) {
+            debugger;
+            response = UsersManager.getUserByWhalePathUserIdResponseMethod(userId);
+        }
+
+        //    path: 'users?email=:email',
+        if ( email ) {
+            debugger;
+            response = UsersManager.getUserByEmailResponseMethod(email);
+        }
         sendJSONResponse(this, response);
     });
     this.route('usersByIntercomId', {
@@ -94,23 +112,6 @@ Router.map(function() {
     }).get(function() {
         debugger;
         var response = UsersManager.getUserByIntercomIdResponseMethod(this.request);
-        sendJSONResponse(this, response);
-    });
-    this.route('usersByWhalePathUserId', {
-        path: 'users?user_id=:whalePathUserId',
-        where: 'server'
-    }).get(function() {
-        debugger;
-        var response = UsersManager.getUserByWhalePathUserIdResponseMethod(this.request);
-        sendJSONResponse(this, response);
-    });
-
-    this.route('usersByEmail', {
-        path: 'users?email=:email',
-        where: 'server'
-    }).get(function() {
-        debugger;
-        var response = UsersManager.getUserByEmailResponseMethod(this.request);
         sendJSONResponse(this, response);
     });
 
