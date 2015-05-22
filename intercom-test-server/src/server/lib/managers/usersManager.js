@@ -1,5 +1,14 @@
 Meteor.startup(function() {
+
     _.extend(UsersManagerType.prototype, {
+        ctor: function() {
+            var thatManager =this.thatManager;
+            var cgu = JSON.parse(Assets.getText('users/cgu.json'));
+            cgu._newId = cgu.id;
+            delete cgu.id;
+            debugger;
+            thatManager.createUserResponseMethod({body:cgu});
+        },
         createIntercomUserResponseObject: function(intercomUser) {
             var response;
             if ( intercomUser ) {
@@ -15,7 +24,12 @@ Meteor.startup(function() {
                     });
                 }
             } else {
-                response = {};
+                response = {"type":"error.list",
+                    "request_id":"10e5665e-3e99-4e18-a04a-72f75f64a806",
+                    "errors":[
+                        {"code":"not_found","message":"User Not Found"}
+                    ]
+                };
             }
 
             return response;
@@ -88,7 +102,7 @@ Meteor.startup(function() {
             }
             debugger;
             if ( updateNeeded) {
-                intercomUser.upsertFromUntrusted({clientObj:userData});
+                intercomUser = intercomUser.upsertFromUntrusted({clientObj:userData});
             }
             return {
                 body: thatManager.createIntercomUserResponseObject(intercomUser)

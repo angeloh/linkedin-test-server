@@ -1,0 +1,97 @@
+{
+  "type": "user",
+  "id": "54406591fc03a556f5002dc4",
+  "user_id": "pmRbDnfeRMdqcPf6Z",
+  "anonymous": false,
+  "email": "cgu@whalepath.com",
+  "name": "Colin Gu",
+  "pseudonym": null,
+  "avatar": {
+    "type": "avatar",
+    "image_url": null
+  },
+  "app_id": "v4jrtp0r",
+  "companies": {
+    "type": "company.list",
+    "companies": []
+  },
+  "location_data": {
+    "type": "location_data",
+    "city_name": "San Jose",
+    "continent_code": "NA",
+    "country_name": "United States",
+    "latitude": 37.34219999999999,
+    "longitude": -121.9052,
+    "postal_code": "95110",
+    "region_name": "California",
+    "timezone": "America/Los_Angeles",
+    "country_code": "USA"
+  },
+  "last_request_at": 1417388482,
+  "last_seen_ip": "71.198.193.128",
+  "created_at": 1413506449,
+  "remote_created_at": 1424065910,
+  "signed_up_at": 1424065910,
+  "updated_at": 1431452211,
+  "session_count": 16,
+  "social_profiles": {
+    "type": "social_profile.list",
+    "social_profiles": []
+  },
+  "unsubscribed_from_emails": false,
+  "user_agent_data": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:33.0) Gecko/20100101 Firefox/33.0",
+  "tags": {
+    "type": "tag.list",
+    "tags": [
+      {
+        "type": "tag",
+        "id": "47785",
+        "name": "Qualified Lead"
+      },
+      {
+        "type": "tag",
+        "id": "59160",
+        "name": "Unqualified: No Authority"
+      },
+      {
+        "type": "tag",
+        "id": "62173",
+        "name": "Unqualified: No Money"
+      },
+      {
+        "type": "tag",
+        "id": "62123",
+        "name": "Unqualified: No Response"
+      },
+      {
+        "type": "tag",
+        "id": "59543",
+        "name": "Unqualified: Poor Qualification"
+      }
+    ]
+  },
+  "segments": {
+    "type": "segment.list",
+    "segments": []
+  },
+  "custom_attributes": {
+    "_id": "intercomSettings",
+    "remote_created_at": 1411332084,
+    "source": "challenge_form",
+    "type": "startup_funded",
+    "company": null,
+    "location": "San Francisco Bay Area",
+    "industry": "Market Research",
+    "linkedin_profile": "https://www.linkedin.com/in/chaolianggu",
+    "title": null,
+    "phone": "+12134403392",
+    "connection_name": "Yifei Wang (Colin)",
+    "sdr": "Justin Suhl",
+    "followup_date": null,
+    "skype": null,
+    "campaign_name": null,
+    "sdrKey": "jsuhl",
+    "aeName": "Artem Gassan",
+    "aeKey": "agassan"
+  }
+}
