@@ -1,42 +1,53 @@
 Meteor.startup(function() {
-    var DefaultTags = [
-        {
-            type: "tag",
-            name: "Customer",
-            id:"1"
-        },
-        {
-            type: "tag",
-            name: "Qualified Lead",
-            id:"2"
-        },
-        {
-            type: "tag",
-            name: "Lead",
-            id:"3"
-        },
-        {
-            type: "tag",
-            name: "Analyst",
-            id:"4"
-        },
-        {
-            type: "tag",
-            name: "Unqualified",
-            id:"10"
-        },
-    ];
-    _.each(DefaultTags, function(defaultTag) {
-        var tag = IntercomTag.findOneByName(defaultTag.name);
-        if ( tag == null) {
-            defaultTag._newId = defaultTag.id;
-            var intercomTag = new IntercomTag(defaultTag);
-            intercomTag._save();
-        }
-    });
-
-    debugger;
+    //var DefaultTags = [
+    //    {
+    //        type: "tag",
+    //        name: "Customer",
+    //        id:"1"
+    //    },
+    //    {
+    //        type: "tag",
+    //        name: "Qualified Lead",
+    //        id:"2"
+    //    },
+    //    {
+    //        type: "tag",
+    //        name: "Lead",
+    //        id:"3"
+    //    },
+    //    {
+    //        type: "tag",
+    //        name: "Analyst",
+    //        id:"4"
+    //    },
+    //    {
+    //        type: "tag",
+    //        name: "Unqualified",
+    //        id:"10"
+    //    },
+    //];
+    //_.each(DefaultTags, function(defaultTag) {
+    //    var tag = IntercomTag.findOneByName(defaultTag.name);
+    //    if ( tag == null) {
+    //        defaultTag._newId = defaultTag.id;
+    //        var intercomTag = new IntercomTag(defaultTag);
+    //        intercomTag._save();
+    //    }
+    //});
+    //
+    //debugger;
     _.extend(TagsManagerType.prototype, {
+        ctor: function() {
+            var intercomIoData = Intercom.syncGetTag({});
+            _.each(intercomIoData.tags, function(tag) {
+                var intercomTag = new IntercomTag(tag);
+                if ( IntercomTag.findOneById(intercomTag._newId)) {
+                    // TODO: need upsert ability.
+                } else {
+                    intercomTag._save();
+                }
+            })
+        },
         getTagsResponseMethod: function(request) {
             // TODO : modify based on needs.
             var query = {};

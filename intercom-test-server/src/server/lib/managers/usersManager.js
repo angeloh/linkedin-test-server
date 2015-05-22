@@ -1,14 +1,14 @@
 Meteor.startup(function() {
 
     _.extend(UsersManagerType.prototype, {
-        ctor: function() {
-            var thatManager =this.thatManager;
-            var cgu = JSON.parse(Assets.getText('users/cgu.json'));
-            cgu._newId = cgu.id;
-            delete cgu.id;
-            debugger;
-            thatManager.createUserResponseMethod({body:cgu});
-        },
+        //ctor: function() {
+        //    var thatManager =this.thatManager;
+        //    var cgu = JSON.parse(Assets.getText('users/cgu.json'));
+        //    cgu._newId = cgu.id;
+        //    delete cgu.id;
+        //    debugger;
+        //    thatManager.createUserResponseMethod({body:cgu});
+        //},
         createIntercomUserResponseObject: function(intercomUser) {
             var response;
             if ( intercomUser ) {
@@ -111,6 +111,15 @@ Meteor.startup(function() {
         getUserByIntercomIdResponseMethod: function(intercomId) {
             var thatManager = this.thatManager;
             var intercomUser = IntercomUser.findOneById(intercomId);
+            if ( intercomUser == null ) {
+                thatManager.log("Did not find intercomId=", intercomId,
+                    "in local db. asking intercom");
+                var intercomIoData = Intercom.syncViewUser({id:intercomId});
+                if ( intercomIoData ) {
+                    var intercomUser = new IntercomUser(intercomIoData);
+                    intercomUser._save();
+                }
+            }
             return {
                 body: thatManager.createIntercomUserResponseObject(intercomUser)
             };
@@ -118,14 +127,31 @@ Meteor.startup(function() {
         getUserByWhalePathUserIdResponseMethod: function(userId) {
             var thatManager = this.thatManager;
             var intercomUser = IntercomUser.findOneByUser_id(userId);
+            if ( intercomUser == null ) {
+                thatManager.log("Did not find userId=", userId,
+                    "in local db. asking intercom");
+                var intercomIoData = Intercom.syncViewUser({user_id:userId});
+                if ( intercomIoData ) {
+                    var intercomUser = new IntercomUser(intercomIoData);
+                    intercomUser._save();
+                }
+            }
             return {
                 body: thatManager.createIntercomUserResponseObject(intercomUser)
             };
         },
         getUserByEmailResponseMethod: function(email) {
             var thatManager = this.thatManager;
-            debugger;
             var intercomUser = IntercomUser.findOneByEmail(email);
+            if ( intercomUser == null ) {
+                thatManager.log("Did not find email=", email,
+                    "in local db. asking intercom");
+                var intercomIoData = Intercom.syncViewUser({email:email});
+                if ( intercomIoData ) {
+                    var intercomUser = new IntercomUser(intercomIoData);
+                    intercomUser._save();
+                }
+            }
             return {
                 body: thatManager.createIntercomUserResponseObject(intercomUser)
             };
