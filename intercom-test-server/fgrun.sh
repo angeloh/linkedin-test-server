@@ -3,4 +3,4 @@
 # behavior of the standard run.sh
 
 echo "mongo will be on port 8001"
-(cd src; NODE_OPTIONS=--debug=8002 meteor -p 8000 run )
+(cd src; NODE_OPTIONS=--debug=8002 meteor -p 8000 --settings=../cfg/settings-prod.json run )
