@@ -1,0 +1,22 @@
+{
+  "env": "production",
+  "public": {
+    "env": "production",
+    "debug": false,
+    "debugLogMixpanel": false,
+    "intercom_io": {
+      "appId": "v4jrtp0r"
+    },
+    "pollIntercomForUpdates": true
+  },
+  "intercom_io": {
+    "defaultAdmin": {
+      "id": 37910
+    },
+    "defaultSubject": "Message from Whale Path",
+    "actuallySend": true,
+    "debugSendToSelf": false,
+    "apiKey": "9bcb13faf997e60ed0115492efbb0996cd6566f8",
+    "appSecret": "poRoRCj7cCuAs5w6u-cv1ALaX3ABA4UTrD3XTPh3"
+  }
+}

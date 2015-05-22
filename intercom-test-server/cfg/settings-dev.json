@@ -1,0 +1,22 @@
+{
+  "env": "development",
+  "public": {
+    "env": "development",
+    "debug": true,
+    "debugLogMixpanel": false,
+    "intercom_io": {
+      "appId": "8apkqri9",
+    },
+    "pollIntercomForUpdates": true,
+  },
+  "intercom_io": {
+    "defaultAdmin": {
+      "id": 38490
+    },
+    "defaultSubject": "Message from Whale Path",
+    "actuallySend": false,
+    "debugSendToSelf": true,
+    "apiKey": "e990bf725583d0e533b73b3a790a2926720668be",
+    "appSecret": "Xlz9qYOXsvyvi4Xfbb6TW3V330EnrA8kQ_QHFkTh"
+  }
+}
