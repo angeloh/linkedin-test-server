@@ -1,5 +1,4 @@
 #!/bin/sh
 
-echo "mongo will be on port 7001"
 #export METEOR_OFFLINE_CATALOG=1
-( cd src; NODE_OPTIONS=--debug=7002 meteor -p 7000 run ) &
+./fgrun.sh &
