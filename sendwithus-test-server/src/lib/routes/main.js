@@ -4,7 +4,7 @@ Router.map(function() {
         where: 'server',
         action: function () {
             this.response.writeHeader(200, {"Content-Type": "application/json;charset=UTF-8"});
-            this.response.write("Intercom.Io test server");
+            this.response.write("SendWithUs test server");
             this.response.end();
         }
     });
