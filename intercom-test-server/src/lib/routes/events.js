@@ -86,5 +86,8 @@ Router.map(function() {
     }).post(function() {
         var response = EventsManager.eventsCreateUpdateResponseMethod(this.request);
         sendJSONResponse(this, response);
+    }).get(function() {
+        var response = "GET not supported for events";
+        sendJSONResponse(this, response);
     });
 })

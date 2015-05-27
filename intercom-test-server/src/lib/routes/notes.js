@@ -100,6 +100,9 @@ Router.map(function() {
  }
 
  */
+    }).get(function() {
+        var response = "GET not supported for /notes";
+        sendJSONResponse(this, response);
     });
 });
 /*
