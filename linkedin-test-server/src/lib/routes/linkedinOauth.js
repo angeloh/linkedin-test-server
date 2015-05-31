@@ -49,8 +49,45 @@ Router.map(function () {
             }
             this.response.writeHeader(statusCode, {"Content-Type": "application/json;charset=UTF-8"});
             this.response.write(EJSON.stringify(response));
-            console.log("access_token exchange: returned status", statusCode);
+            AuthenticationManager.log("access_token exchange: returned status", statusCode);
             this.response.end();
+        }
+    });
+    /**
+     *
+     * used when trying to use a cookie to get an oauth token
+     * var oauthReq = {
+                method: 'get',
+                query: {
+                    apiKey: settings.linkedIn.apiKey,
+                    authorize: true
+                },
+                headers: {
+                    Referer: 'http://rapportive.com',
+                    Cookie: [
+                        cookie
+                    ]
+                }
+            };
+      */
+    this.route('linkedin_oauth_browser', {
+        path: '/uas/js/userspace',
+        where: 'server',
+        action: function () {
+            var queryApiKey = this.request.query.apiKey;
+            if ( !queryApiKey ) {
+                this.response.writeHeader(404, "apiKey query parameter must be set");
+                this.response.end();
+                return;
+            }
+            // TODO: check to see if Api is correct.
+            var queryAuthorize = this.request.query.authorize;
+            if ( queryAuthorize !== 'true' ) {
+                this.response.writeHeader(404, "authorize query parameter must be 'true'");
+                this.response.end();
+                return;
+            }
+            AuthenticationManager.log("browser cookie exchange for oauth token");
         }
     });
 });
